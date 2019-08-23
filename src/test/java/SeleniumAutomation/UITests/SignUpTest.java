@@ -4,6 +4,7 @@ import SeleniumAutomation.BaseTest;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.NewUserPage;
 import SeleniumAutomation.Pages.SignUpPage;
+import SeleniumAutomation.Utils.FakeDataFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,8 +23,9 @@ public class SignUpTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
-        NewUserPage newUserPage = signUpPage.signUp(getRandomNumber() + "emiliano.pollero", "123456", "Emiliano",
-                getRandomNumber() + "test@test.com", "19", Month.JUNE, "1982");
+        NewUserPage newUserPage = signUpPage.signUp(FakeDataFactory.getRandomUsername(), FakeDataFactory.getRandomStringNumber(),
+                FakeDataFactory.getRandomFirstName(),FakeDataFactory.getRandomEmail(), FakeDataFactory.getRandomDay(),
+                FakeDataFactory.getRandomMonth(), FakeDataFactory.getRandomYear());
         System.out.println("Validating profile page for new user");
         Assert.assertEquals(newUserPage.getWelcomeText(), "Welcome to your new profile page, " + "Emiliano!");
         System.out.println("Profile page for new user is correct");
